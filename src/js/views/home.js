@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../styles/home.css";
 import { CharacterCard } from "../component/CharacterCard";
+import { Context } from "../store/appContext";
 
 export const Home = () => {
-  const BASE_API_URL = "https://rickandmortyapi.com/api";
-  const [characters, setCharacters] = useState([]);
-  async function getCharactersFromApi() {
-    // fetch characters
-    try {
-      const response = await fetch(`${BASE_API_URL}/character`);
-      const body = await response.json();
-      if (!response.ok) throw new Error(`>>> Uh oh, ${body}..`);
-      // update characters state
-      setCharacters(body.results);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
+  const {store, actions} = useContext(Context);
   useEffect(() => {
-    getCharactersFromApi();
+    actions.getCharactersFromApi();
   }, []);
 
   return (
@@ -30,7 +17,7 @@ export const Home = () => {
           <h2>{"Characters"}</h2>
         </div>
         <div className="d-flex 100-w overflow-auto">
-          {characters.map((character) => {
+          {store.characters.map((character) => {
 						return (
 							<CharacterCard
 								key={character.id}
