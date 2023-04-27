@@ -25,19 +25,29 @@ export const Navbar = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {"Favorites"}
+            {"Favorites"} {context.store.collected.length > 0 ? <span className="bg-secondary">({context.store.collected.length})</span> : "(0)"}
           </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {context.store.collected.map((character) => {
-              return (
-                <li key={character.id}>
-                  <a className="dropdown-item" href="#" style={{ backgroundColor: "white" }}>
-                    {character.name} <i onClick={()=> context.actions.toggleCollected(character)} class="fas fa-trash-alt"></i>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          {context.store.collected.length > 0 ? (
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {context.store.collected.map((character) => {
+                return (
+                  <li key={character.id}>
+                    <a className="dropdown-item" href="#" style={{ backgroundColor: "white" }}>
+                      {character.name} <i onClick={()=> context.actions.toggleCollected(character)} class="fas fa-trash-alt"></i>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li style={{ backgroundColor: "white" }}>
+                <a className="dropdown-item" href="#">
+                  Empty
+                </a>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>
