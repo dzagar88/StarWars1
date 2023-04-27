@@ -23,13 +23,15 @@ export const EpisodeCard = ({episode}) => {
               }}>
                 {"See more"}
           </Link>
-          <button 
-          onClick={() => actions.toggleEpisodeCollected(episode)}
-          className={(store.collected.find(
-            (_episode) => _episode.url === episode.url
-          ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
-              <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
-
+          <button
+            onClick={() => actions.toggleEpisodeCollected(episode)}
+            className={(store.collected.find(
+              (_episode) => _episode.url === episode.url
+            ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
+            <i style={{
+              backgroundColor: "var(--btn-bg-color)",
+              color: "var(--btn-text-color)"
+            }} className="fas fa-heart"></i>
           </button>
         </div>
       </div>

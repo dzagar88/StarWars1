@@ -23,12 +23,15 @@ export const LocationCard = ({location}) => {
               }}>
                 {"See more"}
           </Link>
-          <button 
-          onClick={() => actions.toggleLocationCollected(location)}
-          className={(store.collected.find(
-            (_location) => _location.url === location.url
-          ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
-              <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
+          <button
+            onClick={() => actions.toggleLocationCollected(location)}
+            className={(store.collected.find(
+              (_location) => _location.url === location.url
+            ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
+            <i style={{
+              backgroundColor: "var(--btn-bg-color)",
+              color: "var(--btn-text-color)"
+            }} className="fas fa-heart"></i>
           </button>
         </div>
       </div>
