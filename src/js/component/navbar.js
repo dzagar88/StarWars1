@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
   const context = useContext(Context);
   return (
-    <nav className="navbar navbar-light bg-light mb-3 px-3">
+    <nav className="navbar navbar-light mb-3 px-3 nav1">
       <span className="navbar-brand mb-0 h1 p-3">
         <img
           src="https://www.pngall.com/wp-content/uploads/4/Rick-And-Morty-PNG-Images.png"
@@ -17,7 +17,7 @@ export const Navbar = () => {
         <Link to="/" className="btn btn-primary">
           {"Back to Home"}
         </Link>
-        <div className="dropdown">
+        <div className="dropdown pt-1">
           <button
             className="btn btn-secondary dropdown-toggle"
             type="button"
@@ -31,8 +31,8 @@ export const Navbar = () => {
             {context.store.collected.map((character) => {
               return (
                 <li key={character.id}>
-                  <a className="dropdown-item" href="#">
-                    {character.name} <i class="fas fa-trash-alt"></i>
+                  <a className="dropdown-item" href="#" style={{ backgroundColor: "white" }}>
+                    {character.name} <i onClick={()=> context.actions.toggleCollected(character)} class="fas fa-trash-alt"></i>
                   </a>
                 </li>
               );

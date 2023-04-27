@@ -1,3 +1,18 @@
 /* 
     General Styles
 */
+.nav1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: bisque;
+    color: darkcyan;
+}
+
+.cards1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: white !important;
+    color: darkcyan;
+}
+
+* {
+    background-color: bisque;
+}

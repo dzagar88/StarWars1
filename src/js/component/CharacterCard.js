@@ -8,14 +8,14 @@ export const CharacterCard = ({character}) => {
   return (
     <div className="card" style={{ minWidth: "18rem", maxWidth:"18rem" }}>
       <img src={character.image} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title"><strong>{"Name: "}</strong>{character.name}</h5>
-        <ul className="card-text">
-        <li><strong>{"Species: "}</strong>{character.species}</li>
-        <li><strong>{"Status: "}</strong>{character.status}</li>
-        <li><strong>{"Gender: "}</strong>{character.gender}</li>
+      <div className="card-body" style={{ backgroundColor: "white" }}>
+        <h5 className="card-title" style={{ backgroundColor: "white" }}><strong style={{ backgroundColor: "white" }}>{"Name: "}</strong>{character.name}</h5>
+        <ul className="card-text" style={{ backgroundColor: "white" }}>
+        <li style={{ backgroundColor: "white" }}><strong style={{ backgroundColor: "white" }}>{"Species: "}</strong>{character.species}</li>
+        <li style={{ backgroundColor: "white" }}><strong style={{ backgroundColor: "white" }}>{"Status: "}</strong>{character.status}</li>
+        <li style={{ backgroundColor: "white" }}><strong style={{ backgroundColor: "white" }}>{"Gender: "}</strong>{character.gender}</li>
         </ul>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between" style={{ backgroundColor: "white" }}>
           <Link 
               to={`/characters/${character.name.replaceAll(" ", "-").toLowerCase()}/${character.id}`}
               className="btn btn-primary"
@@ -28,8 +28,8 @@ export const CharacterCard = ({character}) => {
           onClick={() => actions.toggleCollected(character)}
           className={(store.collected.find(
             (_character) => _character.id === character.id
-          ) !== undefined) ? "btn-success" : "btn-danger"}>
-              <i className="fas fa-check-circle"></i>
+          ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
+              <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
           </button>
         </div>
       </div>

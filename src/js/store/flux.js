@@ -3,6 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       collected: [],
       characters: [],
+      episodes: [],
+      locations: [],
 	  BASE_API_URL: "https://rickandmortyapi.com/api"
     },
     actions: {
@@ -31,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           (_character) => _character.id === character.id
         );
         if (characterFound) {
+        console.log(characterFound)
           // if it is, update character array
           // in the store, to remove this character
           setStore({
@@ -47,13 +50,75 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      // // Remove items from the list by clicking the trash icon
-      // removeCollected(index) {
-      //   const newCollected = [...store.collected];
-      //   newCollected.splice(index, 1);
-      //   setStore({ ...store, collected: newCollected });
-      // },
+      
 
+      async getLocationsFromApi(){
+				const currentStore = getStore();
+				try {
+					const response = await fetch(`${currentStore.BASE_API_URL}/location`);
+					const body = await response.json();
+					if (!response.ok) throw new Error (`${body}`);
+					setStore({
+						locations:body.results});
+				} catch (error){
+					console.log(error);
+				} 
+			},
+			toggleLocationCollected(location){
+				const currentStore = getStore();
+				const locationFound = currentStore.collected.find(
+					(_location) => _location.url === location.url
+				);
+				if (locationFound) {
+					setStore({
+						collected: currentStore.collected.filter(
+							(_location) => _location.url !== location.url
+						)
+					});
+				} else{
+					setStore({
+						collected: [
+							...currentStore.collected,
+							location
+						]
+					})
+				}
+			},
+
+			async getEpisodesFromApi(){
+				const currentStore = getStore();
+				try {
+					const response = await fetch(`${currentStore.BASE_API_URL}/episode`);
+					const body = await response.json();
+					if (!response.ok) throw new Error (`${body}`);
+					setStore({
+						episodes:body.results});
+				} catch (error){
+					console.log(error);
+				} 
+			},
+			toggleEpisodeCollected(episode){
+				const currentStore = getStore();
+				const episodeFound = currentStore.collected.find(
+					(_episode) => _episode.url === episode.url
+				);
+				if (episodeFound) {
+					setStore({
+						collected: currentStore.collected.filter(
+							(_episode) => _episode.url !== episode.url
+						)
+					});
+				} else{
+					setStore({
+						collected: [
+							...currentStore.collected,
+							episode
+						]
+					})
+				}
+			},
+
+     
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
