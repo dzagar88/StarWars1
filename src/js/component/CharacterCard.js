@@ -27,7 +27,7 @@ export const CharacterCard = ({character}) => {
           <button 
           onClick={() => actions.toggleCollected(character)}
           className={(store.collected.find(
-            (_character) => _character.id === character.id
+            (_character) => _character.url === character.url
           ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
               <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
           </button>

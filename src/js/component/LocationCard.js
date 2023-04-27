@@ -26,7 +26,7 @@ export const LocationCard = ({location}) => {
           <button 
           onClick={() => actions.toggleLocationCollected(location)}
           className={(store.collected.find(
-            (_location) => _location.id === location.id
+            (_location) => _location.url === location.url
           ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
               <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
           </button>

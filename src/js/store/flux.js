@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // check if character collected
         const currentStore = getStore();
         const characterFound = currentStore.collected.find(
-          (_character) => _character.id === character.id
+          (_character) => _character.url === character.url
         );
         if (characterFound) {
         console.log(characterFound)
@@ -38,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           // in the store, to remove this character
           setStore({
             collected: currentStore.collected.filter(
-              (_character) => _character.id !== character.id
+              (_character) => _character.url !== character.url
             ),
           });
         } else {

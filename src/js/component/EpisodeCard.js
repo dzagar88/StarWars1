@@ -26,7 +26,7 @@ export const EpisodeCard = ({episode}) => {
           <button 
           onClick={() => actions.toggleEpisodeCollected(episode)}
           className={(store.collected.find(
-            (_episode) => _episode.id === episode.id
+            (_episode) => _episode.url === episode.url
           ) !== undefined) ? "btn btn-success" : "btn btn-danger"}>
               <i style={{ backgroundColor: "lightgray", color: "black" }} className="fas fa-check"></i>
 
